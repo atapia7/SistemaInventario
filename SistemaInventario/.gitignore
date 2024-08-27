@@ -1,0 +1,163 @@
+# Compiled source files
+*.dll
+*.exe
+*.so
+*.dylib
+*.pdb
+*.mdb
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Static Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Dynamic Libraries (shared object files)
+*.dll
+*.so
+*.dylib
+
+# Debug symbols
+*.pdb
+*.ipdb
+*.dsym
+*.dSYM
+
+# VS Code directories
+.vscode/
+
+# Visual Studio directories and files
+.vs/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# Rider directories
+.idea/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# Auto-generated files
+Generated\ Files/
+Generated_Code/
+
+# DotNet files
+project.lock.json
+project.fragment.lock.json
+
+# Build directories
+[Bb]in/
+[Oo]bj/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# VSCode configuration
+.vscode/
+
+# User-specific files
+*.rsuser
+*.rsx
+*.user
+*.userosscache
+*.suo
+*.swp
+*.dbmdl
+*.opendb
+*.sdf
+*.cache
+*.pfx
+*.publishsettings
+
+# T4 files
+*.tt
+*.t4
+
+# Doxygen generated docs
+docs/
+
+# DocFX generated site
+_site/
+
+# Windows
+[Tt]humbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Mac OS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# MacOSX project files
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+*.xcscmblueprint
+
+# Node.js
+node_modules/
+
+# Logs
+*.log
+
+# Paket
+.paket/paket.exe
+paket-files/
+
+# DotNetTool artifacts
+**/local.dotnet-tools/**
+
+# StyleCop
+StyleCopCache.cache
+
+# Roslyn
+.Roslyn/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Project Model Server
+.vs/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+Generated/
+
+# Entity Framework Core
+Migrations/
+
+# ASP.NET Core
+appsettings.json
+appsettings.Development.json
+
+# Azure Functions
+local.settings.json
+
+# Windows Azure
+*.azurePubxml

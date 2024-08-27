@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Proyectos_NET\\SistemaInventario\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Proyectos_NET\\SistemaInventario\\.vs\\SistemaInventario\\config\\applicationhost.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.vs\\SistemaInventario\\config\\applicationhost.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{11C6D5A1-ED22-4AB0-9044-0F93127F76BD}|SistemaInventario\\SistemaInventario.csproj|c:\\proyectos_net\\sistemainventario\\sistemainventario\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{11C6D5A1-ED22-4AB0-9044-0F93127F76BD}|SistemaInventario\\SistemaInventario.csproj|solutionrelative:sistemainventario\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
@@ -26,24 +22,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "applicationhost.config",
-              "DocumentMoniker": "C:\\Proyectos_NET\\SistemaInventario\\.vs\\SistemaInventario\\config\\applicationhost.config",
-              "RelativeDocumentMoniker": ".vs\\SistemaInventario\\config\\applicationhost.config",
-              "ToolTip": "C:\\Proyectos_NET\\SistemaInventario\\.vs\\SistemaInventario\\config\\applicationhost.config",
-              "RelativeToolTip": ".vs\\SistemaInventario\\config\\applicationhost.config",
-              "ViewState": "AQIAAKUAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2024-08-27T05:08:32.615Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Proyectos_NET\\SistemaInventario\\SistemaInventario\\appsettings.json",
               "RelativeDocumentMoniker": "SistemaInventario\\appsettings.json",
@@ -56,7 +39,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "appsettings.Development.json",
               "DocumentMoniker": "C:\\Proyectos_NET\\SistemaInventario\\SistemaInventario\\appsettings.Development.json",
               "RelativeDocumentMoniker": "SistemaInventario\\appsettings.Development.json",
@@ -73,7 +56,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Proyectos_NET\\SistemaInventario\\SistemaInventario\\.gitignore",
               "RelativeDocumentMoniker": "SistemaInventario\\.gitignore",
