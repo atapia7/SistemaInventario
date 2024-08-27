@@ -1,66 +1,33 @@
-# Compiled source files
-*.dll
-*.exe
-*.so
-*.dylib
-*.pdb
-*.mdb
+# Build directories
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Static Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Dynamic Libraries (shared object files)
-*.dll
-*.so
-*.dylib
-
-# Debug symbols
-*.pdb
-*.ipdb
-*.dsym
-*.dSYM
-
-# VS Code directories
-.vscode/
-
-# Visual Studio directories and files
-.vs/
+# User-specific files
+*.rsuser
+*.suo
 *.user
 *.userosscache
-*.suo
 *.sln.docstates
 
-# Rider directories
-.idea/
-
-# JetBrains Rider
-.idea/
-*.sln.iml
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
 
 # Auto-generated files
 Generated\ Files/
 Generated_Code/
 
-# DotNet files
-project.lock.json
-project.fragment.lock.json
+# Configuration files
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json
 
-# Build directories
-[Bb]in/
-[Oo]bj/
+# Temporary and logs files
+*.log
+*.nlog
+*.trace
+*.tlog
 
 # Windows image file caches
 Thumbs.db
@@ -72,92 +39,94 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-# VSCode configuration
-.vscode/
+# Roslyn cache directories
+*.ide/
 
-# User-specific files
-*.rsuser
-*.rsx
-*.user
-*.userosscache
-*.suo
-*.swp
-*.dbmdl
-*.opendb
-*.sdf
-*.cache
-*.pfx
-*.publishsettings
-
-# T4 files
-*.tt
-*.t4
-
-# Doxygen generated docs
-docs/
-
-# DocFX generated site
-_site/
-
-# Windows
-[Tt]humbs.db
-[Dd]esktop.ini
-$RECYCLE.BIN/
-
-# Mac OS
+# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
 
-# MacOSX project files
-*.pbxuser
-*.mode1v3
-*.mode2v3
-*.perspectivev3
-xcuserdata
-*.xccheckout
-*.moved-aside
-*.xcuserstate
-*.xcscmblueprint
+# Windows
+Thumbs.db
+Desktop.ini
+ehthumbs.db
 
-# Node.js
-node_modules/
+# Rider directories
+.idea/
 
-# Logs
-*.log
+# Rider settings file
+*.sln.iml
 
-# Paket
-.paket/paket.exe
-paket-files/
+# Visual Studio directories and files
+.vs/
+
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# VSCode settings
+.vscode/
+
+# NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+packages/
+.nuget/
 
 # DotNetTool artifacts
 **/local.dotnet-tools/**
 
-# StyleCop
-StyleCopCache.cache
+# ASP.NET Identity
+App_Data/ASPNETDB_log.ldf
+App_Data/ASPNETDB.mdf
 
-# Roslyn
-.Roslyn/
-
-# ASP.NET Scaffolding
-ScaffoldingReadMe.txt
-
-# Project Model Server
-.vs/
-project.lock.json
-project.fragment.lock.json
-artifacts/
-Generated/
-
-# Entity Framework Core
-Migrations/
-
-# ASP.NET Core
-appsettings.json
-appsettings.Development.json
+# Publish directories
+**/[Pp]ublish/
+**/wwwroot/
 
 # Azure Functions
 local.settings.json
 
 # Windows Azure
 *.azurePubxml
+
+# Entity Framework Core
+Migrations/
+
+# Auto-generated files by Visual Studio
+*.dbmdl
+*.jfm
+
+# Node.js
+node_modules/
+npm-debug.log*
+
+# Coverage Reports
+*.coverage
+*.coveragexml
+*.sonarqube
+
+# Styles
+.sass-cache/
+*.scssc
+
+# RIA/Silverlight projects
+Generated_Code/
+_Pvt_Extensions/
+
+# Office Temp Files
+~$*
+
+# Certs
+*.pfx
+*.publishsettings
+
+# Uncomment if using DotNet core
+project.lock.json
+project.fragment.lock.json
+
+# DotnetTools
+.dotnet_tools/
