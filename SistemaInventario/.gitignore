@@ -85,7 +85,7 @@ App_Data/ASPNETDB.mdf
 
 # Publish directories
 **/[Pp]ublish/
-**/wwwroot/
+#**/wwwroot/
 
 # Azure Functions
 local.settings.json
