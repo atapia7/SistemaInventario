@@ -1,8 +1,7 @@
-﻿@model SistemaInventario.Modelos.Categoria
-
+﻿@model SistemaInventario.Modelos.Marca
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var titulo = "Crear Categoria";
+    var titulo = "Crear Marca";
 }
 
 <form method="post">
@@ -11,10 +10,10 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         </div>
 
-        @if (Model.Id != 0)
+        @if(Model.Id !=0)
         {
             // Actualizar
-            titulo = "Actualizar Categoria";
+            titulo = "Actualizar Marca";
             <input type="hidden" asp-for="Id" id="id" />
         }
         <div class="col-12 border-bottom p-0">
@@ -28,7 +27,7 @@
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
         </div>
-        <div class="row mb-2 mt-2">
+         <div class="row mb-2 mt-2">
             <div class="form-group col-md-6">
                 <label>Descripcion</label>
                 <input type="text" asp-for="Descripcion" class="form-control" placeholder="Descripcion de la Bodega" />
@@ -47,7 +46,7 @@
         </div>
         <br />
         <div>
-            @if (Model.Id != 0)
+            @if(Model.Id !=0)
             {
                 <partial name="_BotonesActualizarYRegresar" model="Model.Id" />
             }
@@ -63,17 +62,18 @@
 </form>
 
 
-@section Scripts {
+@section Scripts{
     <partial name="_ValidationScriptsPartial" />
-
+   
     <script>
 
         document.getElementById("nombre").addEventListener('change', function () {
             validarNombre();
         });
 
-        function validarNombre() {
-            var url = '@Url.Content("~/")' + "Admin/Categoria/ValidarNombre";
+        function validarNombre()
+        {
+            var url = '@Url.Content("~/")' + "Admin/Marca/ValidarNombre";
             var id = '#id';
             var nombre = '#nombre';
 
@@ -82,11 +82,12 @@
                     if (value) {
                         var nombre = document.getElementById("nombre");
                         swal("Error", `Nombre ${nombre.value} ya Existe`, "error");
-                        nombre.value = "";
+                        nombre.value="";
                     }
                 });
             })
 
         }
     </script>
+
 }

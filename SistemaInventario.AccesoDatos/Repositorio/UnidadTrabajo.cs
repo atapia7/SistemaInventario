@@ -13,6 +13,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
         private readonly ApplicationDbContext cnx;  
         public  IBodegaRepositorio Bodega { get; private set; }
         public ICategoriaRepositorio Categoria { get; private set; }
+        public IMarcaRepositorio Marca { get;private set; }
 
 
 
@@ -22,6 +23,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
             cnx = _cnx;
             Bodega =new BodegaRepositorio(cnx);
             Categoria=new CategoriaRepositorio(cnx);
+            Marca = new MarcaRepositorio(cnx);
         }
 
         public void Dispose()

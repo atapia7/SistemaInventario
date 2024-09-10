@@ -68,8 +68,8 @@ namespace SistemaInventario.Areas.Admin.Controllers
             }
             return Ok(new { data = all });
         }
-        [HttpDelete]
-        public async Task<IActionResult> Delete(int id) {
+
+        [HttpPost] public async Task<IActionResult> Delete(int id) {
 
             var categoriafind = await _unitofwork.Categoria.Obtener(id);
             
