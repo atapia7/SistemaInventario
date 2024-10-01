@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SistemaInventario.AccesoDatos.Repositorio.IRepositorio;
 using SistemaInventario.Modelos;
+using SistemaInventario.Modelos.ErrorViewModels;
 using SistemaInventario.Utilidades;
 
 namespace SistemaInventario.Areas.Admin.Controllers
