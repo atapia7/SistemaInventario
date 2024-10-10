@@ -21,6 +21,7 @@ namespace SistemaInventario.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Upsert(int? id)
         {
+            var idd = Ulid.NewUlid();
             Categoria categoria= new Categoria();
             if (id == null)
             {

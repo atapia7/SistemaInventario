@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using SistemaInventario.AccesoDatos.Repositorio.IRepositorio;
 using SistemaInventario.Modelos;
 using SistemaInventario.Modelos.ErrorViewModels;
+using SistemaInventario.Modelos.Especificaciones;
 using System.Diagnostics;
 
 namespace SistemaInventario.Areas.Inventario.Controllers
@@ -18,9 +19,36 @@ namespace SistemaInventario.Areas.Inventario.Controllers
             _unidadTrabajo = unidadTrabajo;
         }
 
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int pageNumber=1, string busqueda="", string busquedaActual="")
         {
-            IEnumerable<Producto> GetProductos = await _unidadTrabajo.Producto.ObtenerTodos();
+            if (!string.IsNullOrEmpty(busqueda)) { pageNumber=1; } else { busqueda = busquedaActual; }
+
+            ViewData["BusquedaActual"] = busqueda;
+
+            if (pageNumber < 1) { pageNumber = 1; }
+            Parametros parametros = new Parametros()
+            {
+                PageNumber = pageNumber,
+                PageSize = 4
+            };
+
+            var GetProductos = _unidadTrabajo.Producto.ObtenerTodosPaginado(parametros);
+
+            if (!string.IsNullOrEmpty(busqueda))
+            {
+                GetProductos = _unidadTrabajo.Producto.ObtenerTodosPaginado(parametros, p => p.Descripcion.Contains(busqueda));
+            }
+
+            ViewData["TotalPaginas"]=GetProductos.MetaData.TotalPages;
+            ViewData["TotalRegistros"] = GetProductos.MetaData.TotalCount;
+            ViewData["PageSize"] = GetProductos.MetaData.TotalCount;
+            ViewData["PageNumber"] = pageNumber;
+            ViewData["Previo"] = "disabled";
+            ViewData["Siguiente"] = "";
+
+            if(pageNumber> 1){ ViewData["Previo"] = ""; }
+            if (GetProductos.MetaData.TotalPages <= pageNumber) { ViewData["Siguiente"] = "disabled"; }
+
             return View(GetProductos);
         }
 
