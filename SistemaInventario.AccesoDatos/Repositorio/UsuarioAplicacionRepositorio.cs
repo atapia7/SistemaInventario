@@ -14,18 +14,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
             _cnx = cnx;
         }
 
-        public void Actualizar(Marca marca)
-        {
-            var MarcaId = _cnx.Marcas.FirstOrDefault(f => f.Id == marca.Id);
-            if (MarcaId != null)
-            {
-                MarcaId.Nombre = marca.Nombre;
-                MarcaId.Descripcion = marca.Descripcion;
-                MarcaId.Estado = marca.Estado;
-                _cnx.SaveChanges();
-            }
-        }
-
+       
         
     }
 }
