@@ -173,8 +173,16 @@ namespace SistemaInventario.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        if (user.Role == null)
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            return LocalRedirect(returnUrl);
+                        }
+                        else
+                        {
+                            //administrador esta creando un nuevo usuario
+                            return RedirectToAction("Index", "Usuario",new {Area="Admin"});
+                        }
                     }
                 }
                 foreach (var error in result.Errors)
