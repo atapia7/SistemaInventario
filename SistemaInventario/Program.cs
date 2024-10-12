@@ -17,9 +17,23 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddIdentity<IdentityUser,IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddErrorDescriber<ErrorDescriber>()//cambiando reglas del password/identity
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+#region cambiando reglas del password/identity
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireDigit= false;
+    options.Password.RequireLowercase=true;
+    options.Password.RequireNonAlphanumeric=false;
+    options.Password.RequireUppercase=false;
+    options.Password.RequiredLength=6;
+    options.Password.RequiredUniqueChars = 1;
+});
+#endregion
+
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 //add UnitOfWork
