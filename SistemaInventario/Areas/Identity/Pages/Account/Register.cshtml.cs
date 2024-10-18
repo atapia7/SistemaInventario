@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.WebUtilities;
 using SistemaInventario.Modelos;
 using SistemaInventario.Utilidades;
 
@@ -156,6 +157,7 @@ namespace SistemaInventario.Areas.Identity.Pages.Account
                     }
 
                     var userId = await _userManager.GetUserIdAsync(user);
+
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
                     //var callbackUrl = Url.Page(
@@ -163,9 +165,8 @@ namespace SistemaInventario.Areas.Identity.Pages.Account
                     //    pageHandler: null,
                     //    values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                     //    protocol: Request.Scheme);
+                    //await _emailSender.SendEmailAsync(Input.Email, "Confirmar tu email", $"Confirmar tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                    //await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    //    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
