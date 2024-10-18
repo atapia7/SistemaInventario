@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SistemaInventario.AccesoDatos.Data;
 using SistemaInventario.AccesoDatos.Repositorio.IRepositorio;
+using SistemaInventario.Utilidades;
 
 namespace SistemaInventario.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles =DS.Role_Admin)]
     public class UsuarioController : Controller
     {
         private readonly IUnidadTrabajo unitofwork;
@@ -49,7 +52,7 @@ namespace SistemaInventario.Areas.Admin.Controllers
             }
             else
             {
-                usuariofind.LockoutEnd = DateTime.Now.AddYears(10);
+                usuariofind.LockoutEnd = DateTime.Now.AddMonths(3);
             }
             await unitofwork.Guardar();
             return Ok(new { success=true,message="Operacion Exitosa :)" });

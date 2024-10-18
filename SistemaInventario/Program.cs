@@ -22,6 +22,18 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.Sign
     .AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+#region Authorize config
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+#endregion
+
+
+
+
 #region cambiando reglas del password/identity
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -63,6 +75,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
