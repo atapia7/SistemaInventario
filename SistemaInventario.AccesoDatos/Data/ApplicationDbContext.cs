@@ -23,6 +23,13 @@ namespace SistemaInventario.AccesoDatos.Data
 
         public  DbSet<Inventario> Inventarios { get; set; }
 
+        public DbSet<InventarioDetalle> InventarioDetalles { get; set; }
+
+
+
+
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);//fluent API

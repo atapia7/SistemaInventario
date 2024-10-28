@@ -38,6 +38,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
             Inventario = new InventarioRepositorio(cnx);
             BodegaProducto = new BodegaProductoRepositorio(cnx);
             UsuarioAplicacion=new UsuarioAplicacionRepositorio(cnx);
+            InventarioDetalle=new InventarioDetalleRepositorio(cnx);
         }
 
         public void Dispose()
