@@ -21,12 +21,21 @@ namespace SistemaInventario.AccesoDatos.Repositorio
 
         public IBodegaProductoRepositorio BodegaProducto { get; private set; }
 
+        public IInventarioRepositorio Inventario { get; private set; }
+
+        public IInventarioDetalleRepositorio InventarioDetalle { get; set; }
+
+
+
+
         public UnidadTrabajo(ApplicationDbContext _cnx)
         {
             cnx = _cnx;
-            Bodega =new BodegaRepositorio(cnx);
-            Categoria=new CategoriaRepositorio(cnx);
             Marca = new MarcaRepositorio(cnx);
+            Bodega =new BodegaRepositorio(cnx);
+            Producto = new ProductoRepositorio(cnx);
+            Categoria=new CategoriaRepositorio(cnx);
+            Inventario = new InventarioRepositorio(cnx);
             BodegaProducto = new BodegaProductoRepositorio(cnx);
             UsuarioAplicacion=new UsuarioAplicacionRepositorio(cnx);
         }

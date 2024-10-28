@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SistemaInventario.AccesoDatos.Data;
 
@@ -11,9 +12,11 @@ using SistemaInventario.AccesoDatos.Data;
 namespace SistemaInventario.AccesoDatos.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241026075739_AgregarInventarionMigración")]
+    partial class AgregarInventarionMigración
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -315,6 +318,9 @@ namespace SistemaInventario.AccesoDatos.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("BodegaID")
+                        .HasColumnType("int");
+
                     b.Property<int>("BodegaId")
                         .HasColumnType("int");
 
@@ -326,6 +332,9 @@ namespace SistemaInventario.AccesoDatos.Migrations
 
                     b.Property<DateTime>("FechaInicial")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UsuarioAplicacionID")
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UsuarioAplicacionId")
                         .IsRequired()
