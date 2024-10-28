@@ -19,6 +19,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
 
         public IUsuarioAplicacionRepositorio UsuarioAplicacion { get; private set; }
 
+        public IBodegaProductoRepositorio BodegaProducto { get; private set; }
 
         public UnidadTrabajo(ApplicationDbContext _cnx)
         {
@@ -26,7 +27,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
             Bodega =new BodegaRepositorio(cnx);
             Categoria=new CategoriaRepositorio(cnx);
             Marca = new MarcaRepositorio(cnx);
-            Producto = new ProductoRepositorio(cnx);
+            BodegaProducto = new BodegaProductoRepositorio(cnx);
             UsuarioAplicacion=new UsuarioAplicacionRepositorio(cnx);
         }
 
