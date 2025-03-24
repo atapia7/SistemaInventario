@@ -9,6 +9,6 @@ namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
 {
     public interface IKardexInventarioRepositorio : IRepositorio<KardexInventario>
     {
-        
+        Task RegistrarKarde(int bodegaId,string tipo,string detalle,int stockAnterior, int cantidad, string UsuarioId);           
     }
 }

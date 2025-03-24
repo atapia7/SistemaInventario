@@ -9,6 +9,6 @@ namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
 {
     public interface IUsuarioAplicacionRepositorio : IRepositorio<UsuarioAplicacion>
     {
-        
+        public UsuarioAplicacion GetUserSession();
     }
 }

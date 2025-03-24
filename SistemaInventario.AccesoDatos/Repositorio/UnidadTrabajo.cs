@@ -1,4 +1,5 @@
-﻿using SistemaInventario.AccesoDatos.Data;
+﻿using Microsoft.AspNetCore.Http;
+using SistemaInventario.AccesoDatos.Data;
 using SistemaInventario.AccesoDatos.Repositorio.IRepositorio;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace SistemaInventario.AccesoDatos.Repositorio
     public class UnidadTrabajo : IUnidadTrabajo
     {
         private readonly ApplicationDbContext cnx;  
+        
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
         public  IBodegaRepositorio Bodega { get; private set; }
         public ICategoriaRepositorio Categoria { get; private set; }
         public IMarcaRepositorio Marca { get;private set; }
@@ -28,16 +32,17 @@ namespace SistemaInventario.AccesoDatos.Repositorio
         public IKardexInventarioRepositorio KardexInventario { get; set; }
 
 
-        public UnidadTrabajo(ApplicationDbContext _cnx)
+        public UnidadTrabajo(ApplicationDbContext _cnx, IHttpContextAccessor httpContextAccessor)
         {
             cnx = _cnx;
+            _httpContextAccessor = httpContextAccessor;
             Marca = new MarcaRepositorio(cnx);
             Bodega =new BodegaRepositorio(cnx);
             Producto = new ProductoRepositorio(cnx);
             Categoria=new CategoriaRepositorio(cnx);
             Inventario = new InventarioRepositorio(cnx);
             BodegaProducto = new BodegaProductoRepositorio(cnx);
-            UsuarioAplicacion=new UsuarioAplicacionRepositorio(cnx);
+            UsuarioAplicacion=new UsuarioAplicacionRepositorio(cnx,_httpContextAccessor);
             InventarioDetalle=new InventarioDetalleRepositorio(cnx);
             KardexInventario = new KardexInventarioRepositorio(cnx);
         }
