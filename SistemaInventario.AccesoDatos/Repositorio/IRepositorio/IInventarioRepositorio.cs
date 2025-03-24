@@ -1,4 +1,5 @@
-﻿using SistemaInventario.Modelos;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SistemaInventario.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
     {
         void Actualizar(Inventario inventario);
 
-
+        IEnumerable<SelectListItem> ObtenerTodosDropdownLista(string obj);
 
     }
 }

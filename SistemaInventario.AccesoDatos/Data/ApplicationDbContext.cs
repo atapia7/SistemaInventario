@@ -25,7 +25,7 @@ namespace SistemaInventario.AccesoDatos.Data
 
         public DbSet<InventarioDetalle> InventarioDetalles { get; set; }
 
-
+        public DbSet<KardexInventario> KardexInventario { get; set; }
 
 
 

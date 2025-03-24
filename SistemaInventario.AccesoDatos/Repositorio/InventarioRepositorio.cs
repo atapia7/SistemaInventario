@@ -1,4 +1,5 @@
-﻿using SistemaInventario.AccesoDatos.Data;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using SistemaInventario.AccesoDatos.Data;
 using SistemaInventario.AccesoDatos.Repositorio.IRepositorio;
 using SistemaInventario.Modelos;
 using System;
@@ -26,6 +27,19 @@ namespace SistemaInventario.AccesoDatos.Repositorio
                 
                 _cnx.SaveChanges();
             }
+        }
+
+        public IEnumerable<SelectListItem> ObtenerTodosDropdownLista(string obj)
+        {
+            if(obj == "Bodega")
+            {
+                return _cnx.Bodegas.Where(b => b.Estado == true).Select(b => new SelectListItem
+                {
+                    Text=b.Nombre,
+                    Value=b.Id.ToString()
+                });
+            }
+            return null;
         }
     }
 }
