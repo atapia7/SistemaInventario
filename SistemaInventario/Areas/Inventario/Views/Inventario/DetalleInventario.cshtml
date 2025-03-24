@@ -1,0 +1,160 @@
+﻿@model SistemaInventario.Modelos.ViewModels.InventarioVM
+@{
+    ViewData["Title"] = "DetalleInventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container p-2">
+    <div class="card-header bg-dark text-light m-lg-0 row container">
+        <div class="col-6">
+            Agregar Detalle inventario
+        </div>
+        <div class="col-6 text-end">
+            <a asp-action="Index" class="text-white" style="text-decoration:none;"> Salir</a>
+        </div>
+    </div>
+
+    <form method="post" class="p-2">
+        <input asp-for="Inventario.Id" id="inventarioId" name="InventarioId" />
+
+        <div class="form-group mb-4">
+            <label>Bodega</label>
+            <input asp-for="Inventario.Bodega.Nombre" class="form-control" disabled />
+        </div>
+
+        <div class="row mb-2">
+            <div class="form-group col-md-3">
+                <label class="text-primary">Agregar Detalle</label>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="form-group col-md-6 mb-2">
+                    <select id="productoId" class="form-select" name="productoId" data-placeholder="Seleccionar Producto">
+                </select>
+            </div>
+
+            <div class="form-group col-md-2 mb-2">
+                <input class="form-control text-end" placeholder="Cantidad" type="number" min="1" id="cantidadId" name="cantidadId" />
+            </div>
+
+            <div class="form-group col-md-2 mb-2">
+                <button type="submit" class="btn btn-primary" onfocus="false" id="btnAgregar">
+                    Agregar
+                </button>
+            </div>
+        </div>
+
+    </form>
+
+    <table class="table table-striped border">
+        <thead class="thead-dark">
+            <tr class="table-secondary thead-dark">
+                <th>Producto</th>
+                <th>Marca</th>
+                <th>Costo</th>
+                <th>Stock</th>
+                <th>Cantidad</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.InventarioDetalles)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(d=>item.Producto.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(d=>item.Producto.Marca.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(d=>item.Producto.Costo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(d=>item.StockAnterior)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(d=>item.Cantidad)
+                    </td>
+                    <td>
+                        <a class="btn btn-primary text-white" asp-action="Mas" asp-route-id="@item.Id" ><i class="bi bi-file-plus-fill"></i></a>
+                        <a class="btn btn-primary text-white" asp-action="Menos" asp-route-id="@item.Id" ><i class="bi bi-file-minus-fill"></i></a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+    @if (Model.InventarioDetalles.Count() > 0)
+    {
+        <div class="align-content-lg-center">
+        <div class="col-2">
+            <a asp-action="GenerarStock" class="btn btn-warning form-control" asp-route-id="@Model.Inventario.Id">
+                Generar Stock
+            </a>
+        </div>    
+        </div>
+    }
+
+</div>
+
+
+
+@section Scripts {
+
+    <script>
+        // Inicializar Tom Select con búsqueda y carga de datos dinámica
+        document.addEventListener("DOMContentLoaded", function () {
+            new TomSelect("#productoId", {
+                placeholder: "Seleccionar Producto",
+                allowEmptyOption: true,
+                create: false, // Deshabilitar la creación de nuevas opciones por el usuario
+                load: function (query, callback) {
+                    if (!query.length) return callback();
+
+                    // Llamada AJAX para cargar productos basados en el término de búsqueda
+                    fetch(`/inventario/inventario/BuscarProducto?term=${encodeURIComponent(query)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Mapear los resultados a opciones
+                            const opciones = data.map(item => ({
+                                value: item.id,
+                                text: `${item.numeroSerie} ${item.descripcion}`
+                            }));
+                            callback(opciones);
+                        })
+                        .catch(() => {
+                            alert("Error al cargar los productos.");
+                            callback();
+                        });
+                },
+                onDropdownClose: function () {
+                    // Recargar datos cuando se cierra el desplegable
+                    this.clearOptions();
+                },
+                onItemAdd: function () {
+                    // Limpiar las opciones una vez se selecciona una
+                    this.clearOptions();
+                }
+            });
+        });
+
+        $("btnAgregar").click(function () {
+            let cantidad = document.getElementById("cantidad").value;
+            let producto = document.getElementById("productoId").value;
+            if (cantidad.toString() == '' || cantidad < 1) {
+                swal("Error", "Ingrese una cantidad Correcta", "Error");
+                return false;
+            }
+            if (producto.toString() == '') {
+                swal("Error", "Ingrese un producto", "Error");
+                return false;
+            }
+        });
+
+
+    </script>
+
+}
