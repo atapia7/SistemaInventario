@@ -13,9 +13,9 @@ namespace SistemaInventario.Areas.Admin.Controllers
     [Authorize(Roles = DS.Role_Admin + "," + DS.Role_Inventario)]
     public class ProductoController : Controller
     {
-        private readonly IUnidadTrabajo unitofwork;
+        private readonly IUnitOfWork unitofwork;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public ProductoController(IUnidadTrabajo Iunitofwork,IWebHostEnvironment env)
+        public ProductoController(IUnitOfWork Iunitofwork,IWebHostEnvironment env)
         {
             unitofwork = Iunitofwork;
             _webHostEnvironment = env;
@@ -44,7 +44,7 @@ namespace SistemaInventario.Areas.Admin.Controllers
             }
             else
             {
-                productoVM.Producto = await unitofwork.Producto.Obtener(id.GetValueOrDefault());
+                productoVM.Producto = await unitofwork.Producto.FindById(id.GetValueOrDefault());
                 if(productoVM.Producto == null)
                 {
                     return NotFound();
@@ -118,14 +118,14 @@ namespace SistemaInventario.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> ObtenerTodos()
         {
-            IEnumerable<Producto> todos=await unitofwork.Producto.ObtenerTodos(incluirPropiedades:"Categoria,Marca");
+            IEnumerable<Producto> todos=await unitofwork.Producto.GetAll(incluirPropiedades:"Categoria,Marca");
             return Ok(new { data = todos });
         }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-            var findProductoDb = await unitofwork.Producto.Obtener(id);
+            var findProductoDb = await unitofwork.Producto.FindById(id);
             if(findProductoDb == null){
                 return Ok(new {success=false,message="Error al borrar Producto" });
             }
@@ -144,7 +144,7 @@ namespace SistemaInventario.Areas.Admin.Controllers
         public async Task<IActionResult> ValidarSerie(string serie, int id = 0)
         {
             bool valor = false;
-            IEnumerable<Producto> lista =await unitofwork.Producto.ObtenerTodos();
+            IEnumerable<Producto> lista =await unitofwork.Producto.GetAll();
             if (id == 0)
             {
                 valor = lista.Any(p => p.NumeroSerie.ToLower().Trim() == serie.ToLower().Trim());

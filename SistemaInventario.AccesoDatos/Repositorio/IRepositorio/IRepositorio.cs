@@ -10,9 +10,9 @@ namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
 {
     public interface IRepositorio<T> where T : class
     {
-        Task<T> Obtener(int id);
+        Task<T> FindById(int id);
 
-        Task<IEnumerable<T>> ObtenerTodos(Expression<Func<T,bool>> filtro=null,Func<IQueryable<T>,IOrderedQueryable<T>> orderBy=null,string incluirPropiedades=null, bool isTracking=true);
+        Task<IEnumerable<T>> GetAll(Expression<Func<T,bool>> filtro=null,Func<IQueryable<T>,IOrderedQueryable<T>> orderBy=null,string incluirPropiedades=null, bool isTracking=true);
 
         PagedList<T> ObtenerTodosPaginado(Parametros parametros, Expression<Func<T, bool>> filtro = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string incluirPropiedades = null, bool isTracking = true);
 

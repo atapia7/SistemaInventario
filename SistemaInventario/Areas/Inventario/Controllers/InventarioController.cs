@@ -12,13 +12,13 @@ namespace SistemaInventario.Areas.Inventario.Controllers
     [Authorize( Roles = DS.Role_Admin + ","+ DS.Role_Inventario)]
     public class InventarioController : Controller
     {
-        private readonly IUnidadTrabajo _unitofwork;
+        private readonly IUnitOfWork _unitofwork;
 
         [BindProperty]
         public InventarioVM inventarioVM {  get; set; }
 
 
-        public InventarioController(IUnidadTrabajo unitofwork)
+        public InventarioController(IUnitOfWork unitofwork)
         {
             _unitofwork = unitofwork;
         }
@@ -66,7 +66,7 @@ namespace SistemaInventario.Areas.Inventario.Controllers
         {
             inventarioVM = new InventarioVM();
             inventarioVM.Inventario=await _unitofwork.Inventario.ObtenerPrimero(i=>i.Id==id, incluirPropiedades:"Bodega");
-            inventarioVM.InventarioDetalles = await _unitofwork.InventarioDetalle.ObtenerTodos(d => d.InventarioId == id, incluirPropiedades:"Producto,Producto.Marca");           
+            inventarioVM.InventarioDetalles = await _unitofwork.InventarioDetalle.GetAll(d => d.InventarioId == id, incluirPropiedades:"Producto,Producto.Marca");           
             
             return View (inventarioVM);
         }
@@ -113,8 +113,8 @@ namespace SistemaInventario.Areas.Inventario.Controllers
         public async Task<IActionResult> Mas(int id) //recibe el id del detalle 
         {
             inventarioVM = new InventarioVM();
-            var detalle = await _unitofwork.InventarioDetalle.Obtener(id);
-            inventarioVM.Inventario = await _unitofwork.Inventario.Obtener(detalle.InventarioId);
+            var detalle = await _unitofwork.InventarioDetalle.FindById(id);
+            inventarioVM.Inventario = await _unitofwork.Inventario.FindById(detalle.InventarioId);
 
             detalle.Cantidad += 1;
             await _unitofwork.Guardar();
@@ -124,8 +124,8 @@ namespace SistemaInventario.Areas.Inventario.Controllers
         public async Task<IActionResult> Menos(int id) //recibe el id del detalle 
         {
             inventarioVM = new InventarioVM();
-            var detalle = await _unitofwork.InventarioDetalle.Obtener(id);
-            inventarioVM.Inventario = await _unitofwork.Inventario.Obtener(detalle.InventarioId);
+            var detalle = await _unitofwork.InventarioDetalle.FindById(id);
+            inventarioVM.Inventario = await _unitofwork.Inventario.FindById(detalle.InventarioId);
             if(detalle.Cantidad == 1)
             {
                 _unitofwork.InventarioDetalle.Remover(detalle);
@@ -142,14 +142,14 @@ namespace SistemaInventario.Areas.Inventario.Controllers
 
         public async Task<IActionResult> GenerarStock(int id)
         {
-            var inventario = await _unitofwork.Inventario.Obtener(id);
-            var detalleLista= await _unitofwork.InventarioDetalle.ObtenerTodos(d=>d.InventarioId==id);
+            var inventario = await _unitofwork.Inventario.FindById(id);
+            var detalleLista= await _unitofwork.InventarioDetalle.GetAll(d=>d.InventarioId==id);
             foreach (var item in detalleLista)
             {
                 var bodegaproducto = new BodegaProducto();
-                bodegaproducto = await _unitofwork.BodegaProducto.ObtenerPrimero(bp => bp.ProductoId == item.ProductoId && bp.BodegaId == inventario.BodegaId,isTracking:false);
-                
-                if (inventario != null) //el registro de stock existe, hay que actualizar las cantidades 
+                bodegaproducto = await _unitofwork.BodegaProducto.ObtenerPrimero(filtro:(bp => bp.ProductoId == item.ProductoId && bp.BodegaId == inventario.BodegaId));
+
+                if (inventario != null && bodegaproducto != null) //el registro de stock existe, hay que actualizar las cantidades 
                 {
                     bodegaproducto.Cantidad += item.Cantidad;
                     await _unitofwork.Guardar();
@@ -181,7 +181,7 @@ namespace SistemaInventario.Areas.Inventario.Controllers
         [HttpGet]
         public async Task<IActionResult> ObtenerTodos()
         {
-            var alls = await _unitofwork.BodegaProducto.ObtenerTodos(incluirPropiedades: "Bodega,Producto");
+            var alls = await _unitofwork.BodegaProducto.GetAll(incluirPropiedades: "Bodega,Producto");
 
             return Ok(new {data=alls});
         }
@@ -191,7 +191,7 @@ namespace SistemaInventario.Areas.Inventario.Controllers
         {
             if (!string.IsNullOrEmpty(term))
             {
-                var listProd = await _unitofwork.Producto.ObtenerTodos(p => p.Estado == true);
+                var listProd = await _unitofwork.Producto.GetAll(p => p.Estado == true);
                 var data=listProd.Where(x=>x.NumeroSerie.Contains(term,StringComparison.OrdinalIgnoreCase) || 
                                            x.Descripcion.Contains(term,StringComparison.OrdinalIgnoreCase)).ToList();
                 return Ok(data);

@@ -51,7 +51,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
 //add UnitOfWork
-builder.Services.AddScoped<IUnidadTrabajo, UnidadTrabajo>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddRazorPages();
 

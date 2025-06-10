@@ -5,7 +5,7 @@ $(document).ready(function () {
 });
 
 function loadDataTable() {
-    datatable = $('#tblDatos').DataTable({
+    datatable = $('#tblDatosInventario').DataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ Registros Por Pagina",
             "zeroRecords": "Ningun Registro",
@@ -21,7 +21,7 @@ function loadDataTable() {
             }
         },
         "ajax": {
-            "url": "Inventario/Inventario/ObtenerTodos"
+            "url": "/Inventario/Inventario/ObtenerTodos"
         },
         "columns": [
             { "data": "bodega.nombre" },

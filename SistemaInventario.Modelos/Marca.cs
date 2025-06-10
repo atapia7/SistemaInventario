@@ -2,6 +2,9 @@
 
 namespace SistemaInventario.Modelos
 {
+    /// <summary>
+    /// Maker
+    /// </summary>
     public class Marca
     {
         [Key]

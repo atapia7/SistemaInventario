@@ -13,7 +13,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
             _cnx = cnx;
         }
 
-        public void Actualizar(Categoria categoria)
+        public void Update(Categoria categoria)
         {
             var Categoria = _cnx.Categorias.FirstOrDefault(f => f.Id == categoria.Id);
             if (Categoria != null)

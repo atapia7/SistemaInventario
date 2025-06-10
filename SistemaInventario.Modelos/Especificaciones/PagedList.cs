@@ -18,7 +18,7 @@ namespace SistemaInventario.Modelos.Especificaciones
                 PageSize = pageSize,
                 TotalPages =(int)Math.Ceiling(count/(double) pageSize)//por ejm 1.5 lo transforma a 2
             };
-            AddRange(items);//agrega los elementos de la coleccion al finla de la lista
+            AddRange(items);//agrega los elementos de la coleccion al final de la lista
         }
 
         public static PagedList<T> ToPagedList(IEnumerable<T> entidad, int pageNumber, int pageSize)

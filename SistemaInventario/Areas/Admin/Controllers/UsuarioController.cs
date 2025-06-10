@@ -11,10 +11,10 @@ namespace SistemaInventario.Areas.Admin.Controllers
     [Authorize(Roles =DS.Role_Admin)]
     public class UsuarioController : Controller
     {
-        private readonly IUnidadTrabajo unitofwork;
+        private readonly IUnitOfWork unitofwork;
         private readonly ApplicationDbContext cnx;
 
-        public UsuarioController(IUnidadTrabajo _unitofwork,ApplicationDbContext _cnx)
+        public UsuarioController(IUnitOfWork _unitofwork,ApplicationDbContext _cnx)
         {
             unitofwork = _unitofwork;
             cnx = _cnx;
@@ -28,7 +28,7 @@ namespace SistemaInventario.Areas.Admin.Controllers
 
         public async Task<IActionResult> ObtenerTodos()
         {
-            var usuarioLista = await unitofwork.UsuarioAplicacion.ObtenerTodos();
+            var usuarioLista = await unitofwork.UsuarioAplicacion.GetAll(isTracking:false);
             var userRole = cnx.UserRoles.ToListAsync().Result;
             var roles = await cnx.Roles.ToListAsync();
             foreach (var usuario in usuarioLista)

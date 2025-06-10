@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SistemaInventario.AccesoDatos.Repositorio
 {
-    public class UnidadTrabajo : IUnidadTrabajo
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext cnx;  
         
@@ -32,7 +32,7 @@ namespace SistemaInventario.AccesoDatos.Repositorio
         public IKardexInventarioRepositorio KardexInventario { get; set; }
 
 
-        public UnidadTrabajo(ApplicationDbContext _cnx, IHttpContextAccessor httpContextAccessor)
+        public UnitOfWork(ApplicationDbContext _cnx, IHttpContextAccessor httpContextAccessor)
         {
             cnx = _cnx;
             _httpContextAccessor = httpContextAccessor;

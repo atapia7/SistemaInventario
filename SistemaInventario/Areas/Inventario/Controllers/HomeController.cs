@@ -11,9 +11,9 @@ namespace SistemaInventario.Areas.Inventario.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IUnidadTrabajo _unidadTrabajo;
+        private readonly IUnitOfWork _unidadTrabajo;
 
-        public HomeController(ILogger<HomeController> logger, IUnidadTrabajo unidadTrabajo)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unidadTrabajo)
         {
             _logger = logger;
             _unidadTrabajo = unidadTrabajo;

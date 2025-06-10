@@ -24,15 +24,15 @@ namespace SistemaInventario.Utilidades
         }
 
 
-        public async Task SendEmailAsync(string email, string subject, string htmlMessage)
+        public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
-            //var client = new SendGridClient(SendGridSecret);
-            //var from = new EmailAddress("michaeltapialmidon07@gmail.com");
-            //var to=new EmailAddress(email);
-            //var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
+            var client = new SendGridClient(SendGridSecret);
+            var from = new EmailAddress("michaeltapialmidon07@gmail.com");
+            var to = new EmailAddress(email);
+            var msg = MailHelper.CreateSingleEmail(from, to, subject, "", htmlMessage);
 
-            //return client.SendEmailAsync(msg);
-            throw new NotImplementedException();
+            return client.SendEmailAsync(msg);
+            //throw new NotImplementedException();
         }
     }
 }

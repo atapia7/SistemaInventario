@@ -21,7 +21,7 @@ namespace SistemaInventario.Modelos
         [Required(ErrorMessage = "Descripcion es Requerido")]
         [MaxLength(60)]
         public string Descripcion { get; set; }
-
+        
         [Required(ErrorMessage = "Precio es Requerido")]
         public double Precio { get; set; }
 
